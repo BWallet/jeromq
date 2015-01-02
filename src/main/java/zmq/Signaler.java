@@ -160,6 +160,7 @@ public class Signaler
 
     public void recv()
     {
+        /*
         int nbytes = 0;
         while (nbytes == 0) {
             try {
@@ -169,6 +170,19 @@ public class Signaler
             catch (IOException e) {
                 throw new ZError.IOException(e);
             }
+        }
+        rcursor++;
+        */
+        int nbytes = 0;
+        try {
+            nbytes = r.read(rdummy);
+            rdummy.rewind();
+            //int i = rdummy.get();
+            //assert nbytes >= 0;
+            //assert i == 0;
+        }
+        catch (IOException e) {
+            throw new ZError.IOException(e);
         }
         rcursor++;
     }
