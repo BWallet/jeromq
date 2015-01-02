@@ -95,7 +95,14 @@ public class Mailbox
 
             //  If there are no more commands available, switch into passive state.
             active = false;
-            signaler.recv();
+            try {
+                signaler.recv();
+            }
+            catch (RuntimeException ex) {
+                active = true;
+                cmd = cpipe.read();
+                return null;
+            }
         }
 
         //  Wait for signal from the command sender.
